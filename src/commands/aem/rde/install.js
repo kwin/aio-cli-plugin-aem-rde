@@ -94,7 +94,13 @@ async function computeStats(url) {
       };
     }
     case 'file:':
-      break;
+      let path = fs.realpathSync(url);
+      return {
+        fileSize: fs.statSync(path).size,
+        effectiveUrl: url,
+        path,
+        isLocalFile: true
+      };
     default:
       throw new Error(`Unsupported protocol ${url.protocol}`);
   }

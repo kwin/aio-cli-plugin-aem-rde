@@ -186,7 +186,7 @@ class CloudSdkAPI {
         onProgress: (progress) =>
           uploadCallbacks.progress(progress.loadedBytes),
       });
-      return await this._request.putUpdate(changeId, deploymentCallback);
+      return await this._putUpdate(changeId, deploymentCallback);
     } else {
       uploadCallbacks.abort();
       throw new Error(`Error: ${result.status} - ${result.statusText}`);
